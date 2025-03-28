@@ -15,6 +15,8 @@ import { AnimatedText } from "@/components/animated-text";
 import { BankAccountCard } from "@/components/bank-account-card";
 import { InvitationPopup } from "@/components/invitation-popup";
 import { MusicPlayer } from "@/components/music-player";
+import { MessageWall } from "@/components/message-wall";
+import { MessageProvider } from "@/contexts/message-context";
 
 // Import animations
 import "@/styles/animations.css";
@@ -56,7 +58,7 @@ export default function WeddingInvitation() {
   };
 
   return (
-    <>
+    <MessageProvider>
       {/* Invitation Popup - Outside the main content so it's always visible */}
       <InvitationPopup
         guestName={guestName || undefined}
@@ -473,11 +475,6 @@ export default function WeddingInvitation() {
                   {weddingDetails.venue} is located at {weddingDetails.address}.
                   Parking is available on-site at no additional cost.
                 </p>
-                <p className="text-gray-700 text-left leading-relaxed">
-                  For guests traveling from out of town, we recommend staying at
-                  the Roseville Grand Hotel, which is offering a special rate
-                  for our wedding guests. Please mention our names when booking.
-                </p>
               </div>
             </AnimatedSection>
           </div>
@@ -502,6 +499,45 @@ export default function WeddingInvitation() {
             <p className="text-gray-700 mb-8">Please respond by May 15, 2025</p>
             <RsvpForm />
           </div>
+        </AnimatedSection>
+
+        {/* Message Section */}
+        <AnimatedSection
+          className="py-24 w-full bg-gray-50 text-center px-4 relative overflow-hidden"
+          variants={{
+            hidden: { opacity: 0 },
+            visible: { opacity: 1 },
+          }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
+          <div className="absolute -left-16 bottom-20 w-32 h-32 border border-gray-200 opacity-20 rotate-45"></div>
+          <div className="absolute -right-16 top-20 w-32 h-32 border border-gray-200 opacity-20 rotate-45"></div>
+
+          <div className="max-w-6xl mx-auto relative z-10">
+            <div className="mb-16">
+              <h2 className="text-3xl md:text-4xl font-serif mb-4">
+                Messages from Guests
+              </h2>
+              <div className="w-24 h-px bg-gray-400 mx-auto"></div>
+              <p className="text-gray-600 mt-6 max-w-2xl mx-auto">
+                Share your love and well wishes with the couple. Your message will be displayed here for everyone to see.
+              </p>
+            </div>
+
+            <AnimatedSection
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="px-4 py-6">
+                <MessageWall />
+              </div>
+            </AnimatedSection>
+          </div>
+          <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
         </AnimatedSection>
 
         {/* Footer */}
@@ -564,6 +600,6 @@ export default function WeddingInvitation() {
           </div>
         </footer>
       </main>
-    </>
+    </MessageProvider>
   );
 }
