@@ -1,6 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { Calendar, Clock, Heart, MapPin } from "lucide-react";
+import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
 import { CountdownTimer } from "@/components/countdown-timer";
 import { RsvpForm } from "@/components/rsvp-form";
@@ -9,8 +13,16 @@ import { RsvpForm } from "@/components/rsvp-form";
 import { AnimatedSection } from "@/components/animated-section";
 import { AnimatedText } from "@/components/animated-text";
 import { BankAccountCard } from "@/components/bank-account-card";
+import { InvitationPopup } from "@/components/invitation-popup";
+
+// Import animations
+import "@/styles/animations.css";
 
 export default function WeddingInvitation() {
+  // Get the guest name from the query string
+  const searchParams = useSearchParams();
+  const guestName = searchParams.get('to');
+  
   // Wedding details - customize these
   const weddingDetails = {
     brideFirstName: "Zulfa",
@@ -26,6 +38,8 @@ export default function WeddingInvitation() {
 
   return (
     <main className="flex min-h-screen flex-col items-center">
+      {/* Invitation Popup */}
+      <InvitationPopup guestName={guestName || undefined} />
       {/* Hero Section */}
       <section className="relative w-full h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
