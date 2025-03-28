@@ -6,9 +6,10 @@ import Image from "next/image";
 
 interface InvitationPopupProps {
   guestName?: string;
+  onClose?: () => void;
 }
 
-export function InvitationPopup({ guestName }: InvitationPopupProps) {
+export function InvitationPopup({ guestName, onClose }: InvitationPopupProps) {
   const [isOpen, setIsOpen] = useState(true);
 
   useEffect(() => {
@@ -17,20 +18,26 @@ export function InvitationPopup({ guestName }: InvitationPopupProps) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
+      // Call onClose callback when popup is closed
+      if (onClose) onClose();
     }
 
     return () => {
       document.body.style.overflow = "auto";
     };
-  }, [isOpen]);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
+
+  const handleClose = () => {
+    setIsOpen(false);
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
       <div className="relative max-w-md w-full bg-white rounded-lg shadow-xl overflow-hidden animate-fade-in-up">
         <button
-          onClick={() => setIsOpen(false)}
+          onClick={handleClose}
           className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 transition-colors"
           aria-label="Close invitation"
         >
@@ -62,7 +69,7 @@ export function InvitationPopup({ guestName }: InvitationPopupProps) {
           </p>
           
           <button
-            onClick={() => setIsOpen(false)}
+            onClick={handleClose}
             className="inline-flex items-center justify-center border border-gray-300 rounded-none text-sm font-light tracking-widest uppercase transition-colors hover:bg-gray-50 px-8 py-3"
           >
             Open Invitation

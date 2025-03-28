@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Calendar, Clock, Heart, MapPin } from "lucide-react";
 import { useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { CountdownTimer } from "@/components/countdown-timer";
 import { RsvpForm } from "@/components/rsvp-form";
@@ -14,6 +14,7 @@ import { AnimatedSection } from "@/components/animated-section";
 import { AnimatedText } from "@/components/animated-text";
 import { BankAccountCard } from "@/components/bank-account-card";
 import { InvitationPopup } from "@/components/invitation-popup";
+import { MusicPlayer } from "@/components/music-player";
 
 // Import animations
 import "@/styles/animations.css";
@@ -22,6 +23,16 @@ export default function WeddingInvitation() {
   // Get the guest name from the query string
   const searchParams = useSearchParams();
   const guestName = searchParams.get('to');
+  
+  // State for controlling animations and music
+  const [popupClosed, setPopupClosed] = useState(false);
+  const [playMusic, setPlayMusic] = useState(false);
+  
+  // Handle popup close
+  const handlePopupClose = () => {
+    setPopupClosed(true);
+    setPlayMusic(true);
+  };
   
   // Wedding details - customize these
   const weddingDetails = {
@@ -37,9 +48,14 @@ export default function WeddingInvitation() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center">
-      {/* Invitation Popup */}
-      <InvitationPopup guestName={guestName || undefined} />
+    <>
+      {/* Invitation Popup - Outside the main content so it's always visible */}
+      <InvitationPopup guestName={guestName || undefined} onClose={handlePopupClose} />
+      
+      {/* Music Player - Outside the main content so it's always accessible */}
+      <MusicPlayer audioSrc="/music/wedding-music.mp3" startPlaying={playMusic} />
+      
+      <main className={`flex min-h-screen flex-col items-center ${popupClosed ? 'animate-fade-in' : 'opacity-0'}`}>
       {/* Hero Section */}
       <section className="relative w-full h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -525,5 +541,6 @@ export default function WeddingInvitation() {
         </div>
       </footer>
     </main>
+    </>
   );
 }
