@@ -34,12 +34,16 @@ export function BankAccountCard({
         />
       </div>
       <div className="text-left">
-        <div className="mb-4">
-          <p className="text-sm text-gray-500 mb-1">Account Number</p>
+        <div>
+          <p className="text-sm text-gray-500 mb-1">Bank Account Details</p>
           <div className="flex items-center justify-between bg-white p-3 rounded border border-gray-200">
-            <p className="font-mono text-lg">{accountNumber}</p>
+            <p className="font-mono">
+              <span className="text-lg">{accountNumber}</span>
+              <span className="mx-2 text-gray-400">a.n</span>
+              <span className="font-medium">{accountName}</span>
+            </p>
             <button
-              className="text-primary hover:text-primary-dark transition-colors"
+              className="text-primary hover:text-primary-dark transition-colors ml-3 flex-shrink-0"
               onClick={handleCopy}
               aria-label="Copy account number"
             >
@@ -75,12 +79,6 @@ export function BankAccountCard({
               )}
             </button>
           </div>
-        </div>
-        <div>
-          <p className="text-sm text-gray-500 mb-1">Account Name</p>
-          <p className="bg-white p-3 rounded border border-gray-200 font-medium">
-            {accountName}
-          </p>
         </div>
       </div>
     </div>
