@@ -36,7 +36,7 @@ export default function WeddingInvitation() {
       setPlayMusic(true);
     }, 300);
   };
-  
+
   // Handle music toggle from anywhere in the app
   const handleMusicToggle = (playing: boolean) => {
     setPlayMusic(playing);
@@ -65,7 +65,7 @@ export default function WeddingInvitation() {
 
       {/* Music Player - Outside the main content so it's always accessible */}
       <MusicPlayer
-        audioSrc="/music/wedding-music.mp3"
+        audioSrc="/music/music.mpeg"
         startPlaying={playMusic}
         onStateChange={handleMusicToggle}
       />
