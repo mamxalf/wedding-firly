@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Calendar, Clock, Heart, MapPin } from "lucide-react";
 
 import { CountdownTimer } from "@/components/countdown-timer";
-// import { RsvpForm } from "@/components/rsvp-form";
+import { RsvpForm } from "@/components/rsvp-form";
 // import { Gallery } from "@/components/gallery";
 // import { VenueMap } from "@/components/venue-map";
 import { AnimatedSection } from "@/components/animated-section";
@@ -433,7 +433,7 @@ export default function WeddingInvitation() {
       </AnimatedSection>
 
       {/* RSVP Section */}
-      {/* <AnimatedSection
+      <AnimatedSection
         id="rsvp"
         className="py-20 w-full bg-white text-center px-4 relative"
       >
@@ -450,7 +450,7 @@ export default function WeddingInvitation() {
           <p className="text-gray-700 mb-8">Please respond by May 15, 2025</p>
           <RsvpForm />
         </div>
-      </AnimatedSection> */}
+      </AnimatedSection>
 
       {/* Footer */}
       <footer className="w-full py-20 bg-black text-white text-center relative overflow-hidden">
