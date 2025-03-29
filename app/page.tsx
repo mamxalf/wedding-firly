@@ -382,7 +382,7 @@ export default function WeddingInvitation() {
             >
               <div className="rounded-lg overflow-hidden shadow-lg mb-10 border border-gray-100">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!4v1743201557843!6m8!1m7!1syW0HdWuB8c15h6Iub-aJzg!2m2!1d-7.376007021861672!2d110.1716905793647!3f248.81!4f0!5f0.7820865974627469"
+                  src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3956.799476543086!2d110.1705888313372!3d-7.376357668360877!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zN8KwMjInMzQuNiJTIDExMMKwMTAnMTMuMCJF!5e0!3m2!1sen!2sid!4v1743223364279!5m2!1sen!2sid"
                   width="100%"
                   height="450"
                   style={{ border: 0 }}
