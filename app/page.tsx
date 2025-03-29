@@ -55,6 +55,7 @@ export default function WeddingInvitation() {
     address: "Kauman, RT 02/ RW 02, SELOPAMPANG, TEMANGGUNG",
     receptionTime: "8:00 AM",
     lunchTime: "10:00 AM",
+    rsvpTime: "2025-04-10T08:00:00",
   };
 
   return (
@@ -495,7 +496,14 @@ export default function WeddingInvitation() {
           </div>
           <div className="max-w-3xl mx-auto relative z-10">
             <h2 className="text-3xl md:text-4xl font-serif mb-4">RSVP</h2>
-            <p className="text-gray-700 mb-8">Please respond by May 15, 2025</p>
+            <p className="text-gray-700 mb-8">
+              Please respond by{" "}
+              {new Date(weddingDetails.rsvpTime).toLocaleDateString("en-GB", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </p>
             <RsvpForm />
           </div>
         </AnimatedSection>
