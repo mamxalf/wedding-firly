@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Calendar, Clock, Heart, MapPin } from "lucide-react";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 import { useEffect, useState } from "react";
 
 import { CountdownTimer } from "@/components/countdown-timer";
@@ -21,10 +22,26 @@ import { MessageProvider } from "@/contexts/message-context";
 // Import animations
 import "@/styles/animations.css";
 
-export default function WeddingInvitation() {
+// Client component that uses searchParams
+function WeddingContent() {
   // Get the guest name from the query string
   const searchParams = useSearchParams();
   const guestName = searchParams.get("to");
+
+  return <WeddingInvitationContent guestName={guestName} />;
+}
+
+// Main component that wraps the client component in Suspense
+export default function WeddingInvitation() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-pulse">Loading...</div></div>}>
+      <WeddingContent />
+    </Suspense>
+  );
+}
+
+// Component that contains all the wedding invitation content
+function WeddingInvitationContent({ guestName }: { guestName: string | null }) {
 
   // State for controlling animations and music
   const [popupClosed, setPopupClosed] = useState(false);
