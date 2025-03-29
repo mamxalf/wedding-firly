@@ -38,6 +38,8 @@ export function MusicPlayer({
       const audio = new Audio(audioSrc);
       audio.loop = true;
       audio.volume = 0.5;
+      // Set initial time position to 1:24 (84 seconds)
+      audio.currentTime = 84;
       audioRef.current = audio;
       
       // Define event handler functions
@@ -82,6 +84,10 @@ export function MusicPlayer({
       setUserPaused(true);
       // State will be updated via the pause event listener
     } else {
+      // Set the start position to 1:24 (84 seconds) if at the beginning
+      if (audioRef.current.currentTime < 1) {
+        audioRef.current.currentTime = 84;
+      }
       const playPromise = audioRef.current.play();
       
       // User is manually playing, clear the paused flag
@@ -105,6 +111,8 @@ export function MusicPlayer({
       
       // Only play if startPlaying becomes true AND user hasn't manually paused
       if (startPlaying && audioRef.current && !userPaused) {
+        // Set the start position to 1:24 (84 seconds)
+        audioRef.current.currentTime = 84;
         const playPromise = audioRef.current.play();
         
         if (playPromise !== undefined) {

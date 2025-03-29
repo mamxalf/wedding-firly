@@ -15,29 +15,32 @@ export function MessageWall() {
       try {
         setIsLoading(true);
         const response = await fetch("/api/messages");
-        
+
         if (!response.ok) {
           throw new Error("Failed to fetch messages");
         }
-        
+
         const data = await response.json();
-        
+
         // Always merge with existing messages to avoid duplicates
         // If we already have messages in the context, we'll keep them and add any new ones from the database
         if (data.messages && data.messages.length > 0) {
           // Create a map of existing messages by a unique identifier (name + message + created_at)
           const existingMessagesMap = new Map(
             messages.map((msg: Message) => [
-              `${msg.name}-${msg.message}-${msg.created_at}`, 
-              msg
+              `${msg.name}-${msg.message}-${msg.created_at}`,
+              msg,
             ])
           );
-          
+
           // Add only new messages that don't exist in our current state
-          const newMessages = data.messages.filter((msg: Message) => 
-            !existingMessagesMap.has(`${msg.name}-${msg.message}-${msg.created_at}`)
+          const newMessages = data.messages.filter(
+            (msg: Message) =>
+              !existingMessagesMap.has(
+                `${msg.name}-${msg.message}-${msg.created_at}`
+              )
           );
-          
+
           if (newMessages.length > 0) {
             setMessages([...messages, ...newMessages]);
           }
@@ -58,9 +61,9 @@ export function MessageWall() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1
-      }
-    }
+        staggerChildren: 0.1,
+      },
+    },
   };
 
   const itemVariants = {
@@ -68,8 +71,8 @@ export function MessageWall() {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6 }
-    }
+      transition: { duration: 0.6 },
+    },
   };
 
   if (isLoading) {
@@ -100,7 +103,7 @@ export function MessageWall() {
   }
 
   return (
-    <motion.div 
+    <motion.div
       className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
       variants={containerVariants}
       initial="hidden"
@@ -115,7 +118,7 @@ export function MessageWall() {
         >
           <div className="flex items-start justify-between mb-4">
             <h3 className="font-medium text-lg">{message.name}</h3>
-            <Heart className="h-4 w-4 text-gray-400" />
+            {/* <Heart className="h-4 w-4 text-gray-400" /> */}
           </div>
           <p className="text-gray-700 mb-3">{message.message}</p>
           <p className="text-xs text-gray-400">

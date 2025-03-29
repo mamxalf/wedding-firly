@@ -254,71 +254,6 @@ export default function WeddingInvitation() {
           <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
         </AnimatedSection>
 
-        {/* Gift Section */}
-        <AnimatedSection
-          className="py-24 w-full bg-gray-50 text-center px-4 relative overflow-hidden"
-          variants={{
-            hidden: { opacity: 0 },
-            visible: { opacity: 1 },
-          }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
-          <div className="absolute -left-16 bottom-20 w-32 h-32 border border-gray-200 opacity-20 rotate-45"></div>
-          <div className="absolute -right-16 top-20 w-32 h-32 border border-gray-200 opacity-20 rotate-45"></div>
-
-          <div className="max-w-4xl mx-auto relative z-10">
-            <div className="mb-12">
-              <h2 className="text-3xl md:text-4xl font-serif mb-4">
-                Wedding Gift
-              </h2>
-              <div className="w-24 h-px bg-gray-400 mx-auto"></div>
-            </div>
-
-            <AnimatedSection
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0 },
-              }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <p className="text-gray-700 mb-10 max-w-2xl mx-auto text-lg leading-relaxed">
-                Your presence at our wedding is the greatest gift of all.
-                However, if you wish to honor us with a gift, we have provided
-                our account details below.
-              </p>
-            </AnimatedSection>
-
-            <AnimatedSection
-              variants={{
-                hidden: { opacity: 0, scale: 0.95 },
-                visible: { opacity: 1, scale: 1 },
-              }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="max-w-md mx-auto"
-            >
-              <BankAccountCard
-                accountNumber="1540857527"
-                accountName="Roby Firly"
-                bankLogoSrc="/bca-logo.png"
-              />
-            </AnimatedSection>
-
-            <AnimatedSection
-              variants={{
-                hidden: { opacity: 0 },
-                visible: { opacity: 1 },
-              }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-            >
-              <p className="text-gray-600 mt-10 text-sm italic">
-                Thank you for your love, support, and generosity.
-              </p>
-            </AnimatedSection>
-          </div>
-          <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
-        </AnimatedSection>
-
         {/* Details Section */}
         <AnimatedSection
           className="py-24 w-full bg-white text-center px-4 relative overflow-hidden"
@@ -473,9 +408,73 @@ export default function WeddingInvitation() {
                 </h3>
                 <p className="text-gray-700 mb-5 text-left leading-relaxed">
                   {weddingDetails.venue} is located at {weddingDetails.address}.
-                  Parking is available on-site at no additional cost.
                 </p>
               </div>
+            </AnimatedSection>
+          </div>
+          <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
+        </AnimatedSection>
+
+        {/* Gift Section */}
+        <AnimatedSection
+          className="py-24 w-full bg-gray-50 text-center px-4 relative overflow-hidden"
+          variants={{
+            hidden: { opacity: 0 },
+            visible: { opacity: 1 },
+          }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
+          <div className="absolute -left-16 bottom-20 w-32 h-32 border border-gray-200 opacity-20 rotate-45"></div>
+          <div className="absolute -right-16 top-20 w-32 h-32 border border-gray-200 opacity-20 rotate-45"></div>
+
+          <div className="max-w-4xl mx-auto relative z-10">
+            <div className="mb-12">
+              <h2 className="text-3xl md:text-4xl font-serif mb-4">
+                Wedding Gift
+              </h2>
+              <div className="w-24 h-px bg-gray-400 mx-auto"></div>
+            </div>
+
+            <AnimatedSection
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <p className="text-gray-700 mb-10 max-w-2xl mx-auto text-lg leading-relaxed">
+                Your presence at our wedding is the greatest gift of all.
+                However, if you wish to honor us with a gift, we have provided
+                our account details below.
+              </p>
+            </AnimatedSection>
+
+            <AnimatedSection
+              variants={{
+                hidden: { opacity: 0, scale: 0.95 },
+                visible: { opacity: 1, scale: 1 },
+              }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="max-w-md mx-auto"
+            >
+              <BankAccountCard
+                accountNumber="1540857527"
+                accountName="Roby Firly"
+                bankLogoSrc="/bca-logo.png"
+              />
+            </AnimatedSection>
+
+            <AnimatedSection
+              variants={{
+                hidden: { opacity: 0 },
+                visible: { opacity: 1 },
+              }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              <p className="text-gray-600 mt-10 text-sm italic">
+                Thank you for your love, support, and generosity.
+              </p>
             </AnimatedSection>
           </div>
           <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
@@ -521,7 +520,8 @@ export default function WeddingInvitation() {
               </h2>
               <div className="w-24 h-px bg-gray-400 mx-auto"></div>
               <p className="text-gray-600 mt-6 max-w-2xl mx-auto">
-                Share your love and well wishes with the couple. Your message will be displayed here for everyone to see.
+                Share your love and well wishes with the couple. Your message
+                will be displayed here for everyone to see.
               </p>
             </div>
 
