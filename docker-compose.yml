@@ -5,9 +5,10 @@ services:
       dockerfile: Dockerfile
     container_name: wedding-invitation
     ports:
-      - "3333:3333"
+      - "3333:3000"
     environment:
       - NODE_ENV=production
+      - PORT=3000
     volumes:
       # Mount the SQLite database file as a volume to persist data
       - ./wedding.db:/app/wedding.db
@@ -21,7 +22,7 @@ services:
           "--no-verbose",
           "--tries=1",
           "--spider",
-          "http://localhost:3333",
+          "http://localhost:3000",
         ]
       interval: 30s
       timeout: 10s
