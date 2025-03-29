@@ -85,7 +85,7 @@ function WeddingInvitationContent({ guestName }: { guestName: string | null }) {
 
       {/* Music Player - Outside the main content so it's always accessible */}
       <MusicPlayer
-        audioSrc="/music/music.mpe3"
+        audioSrc="/music/music.mp3"
         startPlaying={playMusic}
         onStateChange={handleMusicToggle}
       />
