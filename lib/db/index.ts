@@ -1,19 +1,15 @@
-import sqlite3 from 'sqlite3';
-import { open, Database } from 'sqlite';
-import { join } from 'path';
+import Database from "better-sqlite3";
+import { join } from "path";
 
-let db: Database | null = null;
+let db: Database.Database | null = null;
 
-export async function getDb() {
+export function getDb() {
   if (!db) {
     // Initialize the database
-    db = await open({
-      filename: join(process.cwd(), 'wedding.db'),
-      driver: sqlite3.Database
-    });
+    db = new Database(join(process.cwd(), "wedding.db"));
 
     // Create tables if they don't exist
-    await db.exec(`
+    db.exec(`
       CREATE TABLE IF NOT EXISTS rsvp (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT NOT NULL,
@@ -28,32 +24,40 @@ export async function getDb() {
   return db;
 }
 
-export async function saveRsvp(data: {
+export function saveRsvp(data: {
   name: string;
   attending: string;
   guestCount: string;
   message?: string;
 }) {
-  const db = await getDb();
-  
-  const result = await db.run(
-    `INSERT INTO rsvp (name, attending, guestCount, message) VALUES (?, ?, ?, ?)`,
-    [data.name, data.attending, data.guestCount, data.message || '']
+  const db = getDb();
+
+  const stmt = db.prepare(
+    `INSERT INTO rsvp (name, attending, guestCount, message) VALUES (?, ?, ?, ?)`
   );
-  
+
+  const result = stmt.run(
+    data.name,
+    data.attending,
+    data.guestCount,
+    data.message || ""
+  );
+
   return result;
 }
 
-export async function getMessages() {
-  const db = await getDb();
-  
-  const messages = await db.all(`
+export function getMessages() {
+  const db = getDb();
+
+  const stmt = db.prepare(`
     SELECT name, message, created_at 
     FROM rsvp 
     WHERE message IS NOT NULL AND message != '' 
     ORDER BY created_at DESC
     LIMIT 50
   `);
-  
+
+  const messages = stmt.all();
+
   return messages;
 }

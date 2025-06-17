@@ -1,14 +1,14 @@
-import { NextResponse } from 'next/server';
-import { getMessages } from '@/lib/db';
+import { NextResponse } from "next/server";
+import { getMessages } from "@/lib/db";
 
 export async function GET() {
   try {
-    const messages = await getMessages();
+    const messages = getMessages();
     return NextResponse.json({ messages });
   } catch (error) {
-    console.error('Error fetching messages:', error);
+    console.error("Error fetching messages:", error);
     return NextResponse.json(
-      { error: 'Failed to fetch messages' },
+      { error: "Failed to fetch messages" },
       { status: 500 }
     );
   }
