@@ -8,6 +8,7 @@ export function MessageWall() {
   const { messages, setMessages } = useMessages();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [hasInitialLoad, setHasInitialLoad] = useState(false);
 
   useEffect(() => {
     async function fetchMessages() {
@@ -21,28 +22,31 @@ export function MessageWall() {
 
         const data = await response.json();
 
-        // Always merge with existing messages to avoid duplicates
-        // If we already have messages in the context, we'll keep them and add any new ones from the database
         if (data.messages && data.messages.length > 0) {
-          // Create a map of existing messages by a unique identifier (name + message + created_at)
-          const existingMessagesMap = new Map(
-            messages.map((msg: Message) => [
-              `${msg.name}-${msg.message}-${msg.created_at}`,
-              msg,
-            ])
-          );
-
-          // Add only new messages that don't exist in our current state
-          const newMessages = data.messages.filter(
-            (msg: Message) =>
-              !existingMessagesMap.has(
+          if (!hasInitialLoad) {
+            // Initial load: set all messages from database
+            setMessages(data.messages);
+            setHasInitialLoad(true);
+          } else {
+            // Subsequent loads: merge new messages with existing ones
+            const existingIds = new Set(
+              messages.map((msg: Message) => 
                 `${msg.name}-${msg.message}-${msg.created_at}`
               )
-          );
+            );
 
-          if (newMessages.length > 0) {
-            setMessages([...messages, ...newMessages]);
+            const newMessages = data.messages.filter(
+              (msg: Message) =>
+                !existingIds.has(`${msg.name}-${msg.message}-${msg.created_at}`)
+            );
+
+            if (newMessages.length > 0) {
+              setMessages([...newMessages, ...messages]);
+            }
           }
+        } else if (!hasInitialLoad) {
+          setMessages([]);
+          setHasInitialLoad(true);
         }
       } catch (error) {
         console.error("Error fetching messages:", error);
@@ -53,7 +57,7 @@ export function MessageWall() {
     }
 
     fetchMessages();
-  }, [messages, setMessages]);
+  }, [setMessages, hasInitialLoad, messages.length]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -73,7 +77,7 @@ export function MessageWall() {
       y: 0,
       scale: 1,
       transition: { 
-        type: "spring",
+        type: "spring" as const,
         stiffness: 100,
         damping: 12,
         duration: 0.6 

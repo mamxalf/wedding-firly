@@ -65,13 +65,22 @@ function WeddingInvitationContent({ guestName }: { guestName: string | null }) {
   const weddingDetails = {
     brideFirstName: "Zulfa",
     brideLastName: "Ayyuhan",
+    brideFullName: "Choirunnissa Zulfa Ayyuhan",
+    brideParents: "Bapak Harun Rosit & Ibu Endra Rochimiyati",
     groomFirstName: "Firly",
-    groomLastName: "Pomolango",
-    date: "2025-04-18T08:00:00", // ISO format: YYYY-MM-DDTHH:MM:SS
-    venue: "Masjid Baitul Jannah",
-    address: "Kauman, RT 02/ RW 02, SELOPAMPANG, TEMANGGUNG",
-    receptionTime: "8:00 AM",
-    lunchTime: "10:00 AM",
+    groomLastName: "Pomolango", 
+    groomFullName: "Roby Firly A.S Pomolango",
+    groomParents: "Bapak Suyoto & Ibu Budhi Hendi Astuti",
+    akadDate: "2025-04-18T08:00:00", // Friday, April 18, 2025
+    receptionDate: "2025-06-28T10:00:00", // Saturday, June 28, 2025
+    akadVenue: "Masjid Baitul Jannah",
+    akadAddress: "Kauman, RT 02/ RW 02, SELOPAMPANG, TEMANGGUNG",
+    receptionPutriVenue: "Kediaman Mempelai Putri",
+    receptionPutriAddress: "Kauman, RT 02/ RW 02, SELOPAMPANG, TEMANGGUNG",
+    receptionPutraVenue: "Kediaman Mempelai Putra", 
+    receptionPutraAddress: "Bulan, RT 01/ RW 01, SELOPAMPANG, TEMANGGUNG",
+    receptionPutriMapLink: "https://maps.app.goo.gl/RdFke57mkHg6Fp1g9",
+    receptionPutraMapLink: "https://maps.app.goo.gl/VVbSjgRG6pJrVKrR9",
     rsvpTime: "2025-04-10T08:00:00",
   };
 
@@ -99,7 +108,7 @@ function WeddingInvitationContent({ guestName }: { guestName: string | null }) {
         <section className="relative w-full h-screen flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0 z-0">
             <Image
-              src="/invitation2.png"
+              src="/FOTO-1.png"
               alt="Wedding background"
               fill
               className="object-cover brightness-50 filter grayscale"
@@ -140,7 +149,7 @@ function WeddingInvitationContent({ guestName }: { guestName: string | null }) {
             ></div>
 
             <AnimatedText
-              text={new Date(weddingDetails.date).toLocaleDateString("en-US", {
+              text={new Date(weddingDetails.akadDate).toLocaleDateString("en-US", {
                 weekday: "long",
                 year: "numeric",
                 month: "long",
@@ -154,7 +163,7 @@ function WeddingInvitationContent({ guestName }: { guestName: string | null }) {
               className="pt-8 opacity-0 animate-fadeIn"
               style={{ animationDelay: "2.3s", animationFillMode: "forwards" }}
             >
-              <CountdownTimer targetDate={weddingDetails.date} />
+              <CountdownTimer targetDate={weddingDetails.akadDate} />
             </div>
 
             <div
@@ -196,10 +205,242 @@ function WeddingInvitationContent({ guestName }: { guestName: string | null }) {
           </div>
         </section>
 
+        {/* Quranic Verse Section */}
+        <AnimatedSection
+          className="py-24 w-full bg-gray-50 text-center px-4 relative overflow-hidden"
+          variants={{
+            hidden: { opacity: 0 },
+            visible: { opacity: 1 },
+          }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="max-w-4xl mx-auto relative z-10">
+            <AnimatedSection
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="bg-white p-10 border border-gray-100 shadow-sm">
+                <p className="text-lg md:text-xl text-gray-700 leading-relaxed italic mb-6 text-center">
+                  "Di antara tanda-tanda (kebesaran)-Nya ialah bahwa Dia menciptakan pasangan-pasangan untukmu dari (jenis) dirimu sendiri agar kamu merasa tenteram kepadanya. Dia menjadikan di antaramu rasa cinta dan kasih sayang. Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir."
+                </p>
+                <p className="text-sm text-gray-600 font-medium">Q.S Ar-Rum : 21</p>
+              </div>
+            </AnimatedSection>
+          </div>
+        </AnimatedSection>
+
+        {/* Bride and Groom Profiles Section */}
+        <AnimatedSection
+          className="py-24 w-full bg-white text-center px-4 relative overflow-hidden"
+          variants={{
+            hidden: { opacity: 0 },
+            visible: { opacity: 1 },
+          }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="max-w-6xl mx-auto relative z-10">
+            <div className="grid md:grid-cols-2 gap-16 items-center">
+              {/* Bride Profile */}
+              <AnimatedSection
+                variants={{
+                  hidden: { opacity: 0, x: -30 },
+                  visible: { opacity: 1, x: 0 },
+                }}
+                transition={{ duration: 0.7 }}
+              >
+                <div className="text-center">
+                  <div className="relative mb-8">
+                    <div className="absolute -inset-2 border border-gray-200 -rotate-3"></div>
+                    <Image
+                      src="/FOTO-2.png"
+                      alt="Bride"
+                      width={300}
+                      height={400}
+                      className="relative z-10 grayscale hover:grayscale-0 transition-all duration-700 shadow-lg mx-auto"
+                    />
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-serif mb-2">{weddingDetails.brideFullName}</h3>
+                  <div className="w-16 h-px bg-gray-400 mx-auto mb-4"></div>
+                  <p className="text-gray-700 mb-2">Putri Pertama dari</p>
+                  <p className="text-gray-700 font-medium">{weddingDetails.brideParents}</p>
+                  <p className="text-sm text-gray-500 mt-3">Kauman Rt 02-Rw 02, Selopampang, Temanggung</p>
+                </div>
+              </AnimatedSection>
+
+              {/* Groom Profile */}
+              <AnimatedSection
+                variants={{
+                  hidden: { opacity: 0, x: 30 },
+                  visible: { opacity: 1, x: 0 },
+                }}
+                transition={{ duration: 0.7 }}
+              >
+                <div className="text-center">
+                  <div className="relative mb-8">
+                    <div className="absolute -inset-2 border border-gray-200 rotate-3"></div>
+                    <Image
+                      src="/FOTO-3.png"
+                      alt="Groom"
+                      width={300}
+                      height={400}
+                      className="relative z-10 grayscale hover:grayscale-0 transition-all duration-700 shadow-lg mx-auto"
+                    />
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-serif mb-2">{weddingDetails.groomFullName}</h3>
+                  <div className="w-16 h-px bg-gray-400 mx-auto mb-4"></div>
+                  <p className="text-gray-700 mb-2">Putra Kelima dari</p>
+                  <p className="text-gray-700 font-medium">{weddingDetails.groomParents}</p>
+                  <p className="text-sm text-gray-500 mt-3">Bulan Rt 01-Rw 01, Bulan, Selopampang, Temanggung</p>
+                </div>
+              </AnimatedSection>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {/* Wedding Announcement Section */}
+        <AnimatedSection
+          className="py-24 w-full bg-gray-50 text-center px-4 relative overflow-hidden"
+          variants={{
+            hidden: { opacity: 0 },
+            visible: { opacity: 1 },
+          }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="max-w-5xl mx-auto relative z-10">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <AnimatedSection
+                variants={{
+                  hidden: { opacity: 0, x: -30 },
+                  visible: { opacity: 1, x: 0 },
+                }}
+                transition={{ duration: 0.7 }}
+              >
+                <div className="relative">
+                  <div className="absolute -inset-2 border border-gray-200 rotate-2"></div>
+                  <Image
+                    src="/FOTO-4.png"
+                    alt="Wedding Ceremony"
+                    width={500}
+                    height={400}
+                    className="relative z-10 grayscale hover:grayscale-0 transition-all duration-700 shadow-lg mx-auto"
+                  />
+                </div>
+              </AnimatedSection>
+
+              <AnimatedSection
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0 },
+                }}
+                transition={{ duration: 0.6 }}
+              >
+                <div className="bg-white p-10 border border-gray-100 shadow-sm text-left">
+                  <p className="text-lg text-gray-700 leading-relaxed mb-6">
+                    "Alhamdulillah, kami telah melangsungkan akad nikah pada"
+                  </p>
+                  <h3 className="text-xl md:text-2xl font-medium mb-4 text-center">
+                    Jum'at, 18 April 2025
+                  </h3>
+                  <p className="text-gray-700 mb-2 text-center">{weddingDetails.akadVenue}</p>
+                  <p className="text-sm text-gray-500 mb-6 text-center">{weddingDetails.akadAddress}</p>
+                  <p className="text-lg text-gray-700 leading-relaxed">
+                    secara sederhana bersama keluarga."<br/>
+                    Kini kami ingin berbagi kebahagiaan melalui acara resepsi.
+                  </p>
+                </div>
+              </AnimatedSection>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {/* Reception Details Section */}
+        <AnimatedSection
+          className="py-24 w-full bg-white text-center px-4 relative overflow-hidden"
+          variants={{
+            hidden: { opacity: 0 },
+            visible: { opacity: 1 },
+          }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="max-w-6xl mx-auto relative z-10">
+            <div className="mb-16">
+              <h2 className="text-3xl md:text-4xl font-serif mb-4">
+                Reception Details
+              </h2>
+              <div className="w-24 h-px bg-gray-400 mx-auto"></div>
+              <p className="text-gray-600 mt-6 max-w-3xl mx-auto leading-relaxed">
+                Sebagai wujud rasa syukur, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk hadir dan memberikan doa restu pada acara resepsi pernikahan kami yang insyaAllah akan dilaksanakan pada:
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-12">
+              {/* Reception Putri */}
+              <AnimatedSection
+                className="bg-gray-50 p-10 border border-gray-100 shadow-sm"
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  visible: { opacity: 1, y: 0 },
+                }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+              >
+                <h3 className="text-xl font-medium mb-4">RESEPSI PUTRI</h3>
+                <p className="text-lg font-medium mb-2">Sabtu, 28 Juni 2025</p>
+                <p className="text-gray-700 mb-4">{weddingDetails.receptionPutriAddress}</p>
+                <a 
+                  href={weddingDetails.receptionPutriMapLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-gray-800 text-white px-6 py-2 text-sm font-medium hover:bg-gray-700 transition-colors"
+                >
+                  LOKASI
+                </a>
+              </AnimatedSection>
+
+              {/* Reception Putra */}
+              <AnimatedSection
+                className="bg-gray-50 p-10 border border-gray-100 shadow-sm"
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  visible: { opacity: 1, y: 0 },
+                }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <h3 className="text-xl font-medium mb-4">RESEPSI PUTRA</h3>
+                <p className="text-lg font-medium mb-2">Sabtu, 28 Juni 2025</p>
+                <p className="text-gray-700 mb-4">{weddingDetails.receptionPutraAddress}</p>
+                <a 
+                  href={weddingDetails.receptionPutraMapLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-gray-800 text-white px-6 py-2 text-sm font-medium hover:bg-gray-700 transition-colors"
+                >
+                  LOKASI
+                </a>
+              </AnimatedSection>
+            </div>
+
+            <AnimatedSection
+              variants={{
+                hidden: { opacity: 0 },
+                visible: { opacity: 1 },
+              }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="mt-12"
+            >
+              <p className="text-gray-700 text-lg leading-relaxed">
+                Merupakan kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dalam momen bahagia ini.
+              </p>
+            </AnimatedSection>
+          </div>
+        </AnimatedSection>
+
         {/* Our Story Section */}
         <AnimatedSection
           id="our-story"
-          className="py-24 w-full bg-white text-center px-4 relative overflow-hidden"
+          className="py-24 w-full bg-gray-50 text-center px-4 relative overflow-hidden"
         >
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
           <div className="absolute -left-24 top-40 w-48 h-48 rounded-full border border-gray-100 opacity-20"></div>
@@ -307,7 +548,7 @@ function WeddingInvitationContent({ guestName }: { guestName: string | null }) {
                 </div>
                 <h3 className="text-xl font-medium mb-3">The Date</h3>
                 <p className="text-gray-700">
-                  {new Date(weddingDetails.date).toLocaleDateString("en-US", {
+                  {new Date(weddingDetails.akadDate).toLocaleDateString("en-US", {
                     weekday: "long",
                     year: "numeric",
                     month: "long",
@@ -329,7 +570,7 @@ function WeddingInvitationContent({ guestName }: { guestName: string | null }) {
                 </div>
                 <h3 className="text-xl font-medium mb-3">Ceremony</h3>
                 <p className="text-gray-700">
-                  {new Date(weddingDetails.date).toLocaleTimeString("en-US", {
+                  {new Date(weddingDetails.akadDate).toLocaleTimeString("en-US", {
                     hour: "numeric",
                     minute: "2-digit",
                   })}
@@ -351,9 +592,9 @@ function WeddingInvitationContent({ guestName }: { guestName: string | null }) {
                   <MapPin className="h-12 w-12 text-gray-800" />
                 </div>
                 <h3 className="text-xl font-medium mb-3">Location</h3>
-                <p className="text-gray-700">{weddingDetails.venue}</p>
+                <p className="text-gray-700">{weddingDetails.akadVenue}</p>
                 <p className="mt-3 text-sm text-gray-500">
-                  {weddingDetails.address}
+                  {weddingDetails.akadAddress}
                 </p>
               </AnimatedSection>
             </div>
@@ -406,7 +647,7 @@ function WeddingInvitationContent({ guestName }: { guestName: string | null }) {
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title={`Map showing location of ${weddingDetails.venue}`}
+                  title={`Map showing location of ${weddingDetails.akadVenue}`}
                   className="filter grayscale hover:grayscale-0 transition-all duration-700"
                 ></iframe>
               </div>
@@ -425,7 +666,7 @@ function WeddingInvitationContent({ guestName }: { guestName: string | null }) {
                   Getting There
                 </h3>
                 <p className="text-gray-700 mb-5 text-left leading-relaxed">
-                  {weddingDetails.venue} is located at {weddingDetails.address}.
+                  {weddingDetails.akadVenue} is located at {weddingDetails.akadAddress}.
                 </p>
               </div>
             </AnimatedSection>
@@ -474,13 +715,20 @@ function WeddingInvitationContent({ guestName }: { guestName: string | null }) {
                 visible: { opacity: 1, scale: 1 },
               }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="max-w-md mx-auto"
+              className="max-w-4xl mx-auto"
             >
-              <BankAccountCard
-                accountNumber="1540857527"
-                accountName="Roby Firly"
-                bankLogoSrc="/bca-logo.png"
-              />
+              <div className="grid md:grid-cols-2 gap-8">
+                <BankAccountCard
+                  accountNumber="7181539202"
+                  accountName="Choirunnissa Zulfa Ayyuhan"
+                  bankLogoSrc="/bsi-logo.png"
+                />
+                <BankAccountCard
+                  accountNumber="1540857527"
+                  accountName="Roby Firly A.S Pomolango"
+                  bankLogoSrc="/bca-logo.png"
+                />
+              </div>
             </AnimatedSection>
 
             <AnimatedSection
@@ -540,6 +788,25 @@ function WeddingInvitationContent({ guestName }: { guestName: string | null }) {
 
           <div className="max-w-6xl mx-auto relative z-10">
             <div className="mb-16">
+              <AnimatedSection
+                variants={{
+                  hidden: { opacity: 0, y: -20 },
+                  visible: { opacity: 1, y: 0 },
+                }}
+                transition={{ duration: 0.6 }}
+              >
+                <div className="relative mb-8 inline-block">
+                  <div className="absolute -inset-2 border border-gray-200 -rotate-2"></div>
+                  <Image
+                    src="/FOTO-5.png"
+                    alt="Happy Couple"
+                    width={300}
+                    height={200}
+                    className="relative z-10 grayscale hover:grayscale-0 transition-all duration-700 shadow-lg"
+                  />
+                </div>
+              </AnimatedSection>
+              
               <h2 className="text-3xl md:text-4xl font-serif mb-4">
                 Messages from Guests
               </h2>
@@ -603,7 +870,7 @@ function WeddingInvitationContent({ guestName }: { guestName: string | null }) {
               <div className="w-16 h-px bg-white/30 mx-auto my-8"></div>
 
               <p className="mb-10 font-light tracking-wider">
-                {new Date(weddingDetails.date).toLocaleDateString("en-US", {
+                {new Date(weddingDetails.akadDate).toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "long",
                   day: "numeric",
