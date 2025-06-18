@@ -36,7 +36,17 @@ export function InvitationPopup({ guestName, onClose }: InvitationPopupProps) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
       <div className="relative max-w-md w-full bg-white rounded-lg shadow-xl overflow-hidden animate-fade-in-up">
-        <div className="p-6 text-center">
+        {/* Background cover image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/COVER-UNDANGAN.png"
+            alt="Wedding cover"
+            fill
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-white/90"></div>
+        </div>
+        <div className="relative z-10 p-6 text-center">
           <div className="mb-6">
             <Image
               src="/ring.png"
@@ -69,7 +79,7 @@ export function InvitationPopup({ guestName, onClose }: InvitationPopupProps) {
           </button>
         </div>
 
-        <div className="bg-gray-50 p-4 text-center text-sm text-gray-500">
+        <div className="relative z-10 bg-gray-50/90 p-4 text-center text-sm text-gray-500">
           <p>Firly & Zulfa</p>
         </div>
       </div>
