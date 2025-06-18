@@ -72,7 +72,8 @@ function WeddingInvitationContent({ guestName }: { guestName: string | null }) {
     groomFullName: "Roby Firly A.S Pomolango",
     groomParents: "Bapak Suyoto & Ibu Budhi Hendi Astuti",
     akadDate: "2025-04-18T08:00:00", // Friday, April 18, 2025
-    receptionDate: "2025-06-29T10:00:00", // Sunday, June 29, 2025
+    receptionPutriDate: "Sabtu, 28 Juni 2025", // Saturday, June 28, 2025
+    receptionPutraDate: "Minggu, 29 Juni 2025", // Sunday, June 29, 2025
     akadVenue: "Masjid Baitul Jannah",
     akadAddress: "Kauman, RT 02/ RW 02, SELOPAMPANG, TEMANGGUNG",
     receptionPutriVenue: "Kediaman Mempelai Putri",
@@ -147,36 +148,6 @@ function WeddingInvitationContent({ guestName }: { guestName: string | null }) {
               className="w-32 h-px bg-white/70 mx-auto my-8 opacity-0 animate-fadeIn"
               style={{ animationDelay: "1.8s", animationFillMode: "forwards" }}
             ></div>
-
-            <AnimatedText
-              text={new Date(weddingDetails.akadDate).toLocaleDateString("en-US", {
-                weekday: "long",
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-              className="text-lg md:text-xl font-light"
-              delay={2}
-            />
-
-            <div
-              className="pt-8 opacity-0 animate-fadeIn"
-              style={{ animationDelay: "2.3s", animationFillMode: "forwards" }}
-            >
-              <CountdownTimer targetDate={weddingDetails.akadDate} />
-            </div>
-
-            <div
-              className="pt-10 opacity-0 animate-fadeIn"
-              style={{ animationDelay: "2.6s", animationFillMode: "forwards" }}
-            >
-              <Link
-                href="#our-story"
-                className="inline-flex items-center justify-center border border-white/60 rounded-none text-sm font-light tracking-widest uppercase transition-colors hover:bg-white/10 px-10 py-3"
-              >
-                Our Story
-              </Link>
-            </div>
           </div>
           <div
             className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce opacity-0 animate-fadeIn"
@@ -387,7 +358,7 @@ function WeddingInvitationContent({ guestName }: { guestName: string | null }) {
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
                 <h3 className="text-xl font-medium mb-4">RESEPSI PUTRI</h3>
-                <p className="text-lg font-medium mb-2">Sabtu, 28 Juni 2025</p>
+                <p className="text-lg font-medium mb-2">{weddingDetails.receptionPutriDate}</p>
                 <p className="text-gray-700 mb-4">{weddingDetails.receptionPutriAddress}</p>
                 <a 
                   href={weddingDetails.receptionPutriMapLink}
@@ -409,7 +380,7 @@ function WeddingInvitationContent({ guestName }: { guestName: string | null }) {
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
                 <h3 className="text-xl font-medium mb-4">RESEPSI PUTRA</h3>
-                <p className="text-lg font-medium mb-2">Sabtu, 28 Juni 2025</p>
+                <p className="text-lg font-medium mb-2">{weddingDetails.receptionPutraDate}</p>
                 <p className="text-gray-700 mb-4">{weddingDetails.receptionPutraAddress}</p>
                 <a 
                   href={weddingDetails.receptionPutraMapLink}

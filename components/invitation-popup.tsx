@@ -44,7 +44,7 @@ export function InvitationPopup({ guestName, onClose }: InvitationPopupProps) {
             fill
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-white/90"></div>
+          <div className="absolute inset-0 bg-white/75"></div>
         </div>
         <div className="relative z-10 p-6 text-center">
           <div className="mb-6">
